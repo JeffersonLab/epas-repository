@@ -11,11 +11,11 @@ abstract class BaseModel
      * @see ePAS API documentation for list and definitions.
      * @var array
      */
-    protected $data;
+    protected $data = [];
 
 
     function __construct(array $data){
-        $this->data = $data;
+        $this->data = array_merge($this->data, $data);
     }
 
     /**
@@ -24,6 +24,16 @@ abstract class BaseModel
      * @return string
      */
     abstract function url() : string;
+
+    /**
+     * Returns an array representation of the object
+     *
+     * @return string
+     */
+    function toArray() : array {
+        return $this->data;
+    }
+
 
     /**
      * Magic method allowing access to model attributes.
@@ -37,4 +47,20 @@ abstract class BaseModel
         }
         throw new ModelException("Invalid model attribute: $attr");
     }
+
+    /**
+     * Magic method allowing access to model attributes.
+     * @param $attr
+     * @return void
+     * @throws ModelException
+     */
+    public function __set($attr, $val){
+        if (array_key_exists(Str::studly($attr), $this->data)){
+            $this->data[Str::studly($attr)] = $val;
+        }else{
+            throw new ModelException("Invalid model attribute: $attr");
+        }
+    }
+
+
 }
