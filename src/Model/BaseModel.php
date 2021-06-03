@@ -4,7 +4,7 @@ namespace Jlab\EpasRepository\Model;
 use Illuminate\Support\Str;
 use Jlab\EpasRepository\Exception\ModelException;
 
-abstract class BaseModel
+abstract class BaseModel implements DocumentInterface
 {
     /**
      * The ePAS Application data attributes.
@@ -17,13 +17,6 @@ abstract class BaseModel
     function __construct(array $data){
         $this->data = array_merge($this->data, $data);
     }
-
-    /**
-     * Returns the url to viewing the model in ePAS.
-     *
-     * @return string
-     */
-    abstract function url() : string;
 
     /**
      * Returns an array representation of the object

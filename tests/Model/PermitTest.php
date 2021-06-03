@@ -22,6 +22,7 @@ class PermitTest extends TestCase
             "DirectionalityID" => "-2147483648",
             "DirectionalityName" => [],
             "DisplayName" => "JLab-PTW-11",
+            "PermitNumber" => "JLab-PTW-11",
             "PermitStateName" => "PlanningComplete",
             "PermitStateID" => "-2147483648",
             "PermitTypeID" => "3",
@@ -56,6 +57,12 @@ class PermitTest extends TestCase
         $this->assertEquals(PermitTest::WEB_PERMIT.'?PermitID=11', $this->permit->url());
     }
 
-
+    function test_it_implements_abstract_methods(){
+        $this->assertEquals('Permit To Work', $this->permit->typeName());
+        $this->assertEquals('JLab-PTW-11', $this->permit->documentNumber());
+        $this->assertEquals('PlanningComplete', $this->permit->stateName());
+        $this->assertEquals('Integration Test', $this->permit->title());
+        $this->assertEquals('11', $this->permit->surpassRef());
+    }
 
 }

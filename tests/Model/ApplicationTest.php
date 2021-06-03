@@ -55,4 +55,11 @@ class ApplicationTest extends TestCase
     }
 
 
+    function test_it_implements_abstract_methods(){
+        $this->assertEquals('Permit Request', $this->application->typeName());
+        $this->assertEquals('JLab-PR-10', $this->application->documentNumber());
+        $this->assertEquals('PermitCreated', $this->application->stateName());
+        $this->assertEquals('Integration Test', $this->application->title());
+        $this->assertEquals('11', $this->application->surpassRef());
+    }
 }

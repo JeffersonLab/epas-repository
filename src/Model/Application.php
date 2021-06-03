@@ -89,4 +89,45 @@ class Application extends BaseModel
         return config('epas-repository.webApplication') . '?ApplicationID=' . $this->SurpassRef;
     }
 
+    /**
+     * @return string
+     */
+    function documentNumber(): string
+    {
+        return $this->applicationNumber;
+    }
+
+    /**
+     * @return string
+     */
+    function typeName(): string
+    {
+        return $this->applicationTypeName;
+    }
+
+    /**
+     * @return string
+     */
+    function stateName(): string
+    {
+        return $this->applicationStateName;
+    }
+
+    /**
+     * @return string
+     */
+    function surpassRef(): string
+    {
+        return $this->surpassRef;
+    }
+
+    /**
+     * @return string
+     */
+    function title(): string
+    {
+        return $this->title;
+    }
+
+
 }
