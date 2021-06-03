@@ -34,6 +34,37 @@ class ApplicationRepository extends EpasRepository
     }
 
     /**
+     * Save a Permit Application to ePAS
+     */
+    function save(Application $application){
+        // Local WSDL copy with bogus minOccurs=1 items removed
+        //$this->wsdl = 'http://localhost/epas/ApplicationWebService.asmx.xml';
+        // Direct URL to the method:
+        //return $this->integrationUrl().'/'.$this->webServiceName().'?op=AddApplication';
+        $params['sdoApplication'] = $application->toArray();
+        $retrieved = $this->call('AddApplication', $params);
+        return $this->collect($this->parseResultDataXml($retrieved));
+    }
+
+    /**
+     * Get a collection of available Application types
+     *
+     *  Example Application Type Record returned by ePAS API :
+     *   "ApplicationTypeID": 5
+     *   "Name": "Permit Request"
+     *   "Abbreviation": "PR"
+     *   "Color": "#EEEEEE"
+     *
+     * @throws \Jlab\EpasRepository\Exception\ConfigurationException
+     */
+    function applicationTypes(){
+        $retrieved = $this->call('GetAllApplicationTypes');
+        // Unlike many (most?) other ePAS API calls which return XML ResultData,
+        // this call returns JSON.
+        return collect(json_decode($retrieved));
+    }
+
+    /**
      * @inheritDoc
      * @param array $data
      * @return Application
