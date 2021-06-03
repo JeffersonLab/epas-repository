@@ -3,9 +3,12 @@
 namespace Jlab\EpasRepository\Repository;
 
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 use Jlab\EpasRepository\Exception\WebServiceException;
 use RicorocksDigitalAgency\Soap\Facades\Soap;
 use Jlab\EpasRepository\Exception\ConfigurationException;
+
+use SoapClient;
 
 /**
  * Class EpasRepository
@@ -14,9 +17,26 @@ use Jlab\EpasRepository\Exception\ConfigurationException;
 abstract class EpasRepository
 {
     /**
+     * Client instance for interacting with API.
+     *
      * @var \RicorocksDigitalAgency\Soap\Request\Request
      */
     protected $apiClient;
+
+    /**
+     * Whether to trace and log XML of API interactions.
+     *
+     * @var boolean
+     */
+    public $trace = false;
+
+    /**
+     * The SOAP wsdl to use for API.
+     *
+     * @var string
+     */
+    protected $wsdl;
+
 
     /**
      * EpasRepository constructor.
@@ -28,6 +48,14 @@ abstract class EpasRepository
     }
 
     /**
+     * Enables tracing and logging of API XML interactions.
+     */
+    function trace(){
+        $this->trace = true;
+        Soap::trace();
+    }
+
+    /**
      * Call an ePAS API method.
      *
      * @param string $method API Method to call (ex: GetApplicationsByWorkOrderNumber)
@@ -36,13 +64,38 @@ abstract class EpasRepository
      * @return mixed
      * @throws \Jlab\EpasRepository\Exception\ConfigurationException
      */
-    function call(string $method, array $params, bool $withAuth = true)
+    function call(string $method, array $params = [], bool $withAuth = true)
     {
         if ($withAuth) {
             $params = $this->authParam() + $params;
         }
-        $result = $this->apiClient->call($method, $params);
+
+        if ($this->trace) {             // log extra debug info
+            $result = $this->callWithTrace($method, $params);
+        }else{
+            $result = $this->apiClient->call($method, $params);
+        }
+
         return $this->extractResultData($method, $result);
+    }
+
+    /**
+     * Call ePAS API method and log the XML messages used in the interaction.
+     *
+     * @param $method
+     * @param $params
+     * @return mixed
+     */
+    protected function callWithTrace($method, $params){
+        $result = $this->apiClient->trace()->call($method, $params);
+
+        if ($this->trace) {
+            Log::debug($this->apiClient->getEndpoint());
+            Log::debug(serialize($result->trace()->xmlRequest));
+            Log::debug(serialize($result->trace()->xmlResponse));
+        }
+
+        return $result;
     }
 
     /**
@@ -60,7 +113,10 @@ abstract class EpasRepository
      * @throws ConfigurationException
      */
     function wsdl() : string {
-        return $this->integrationUrl().'/'.$this->webServiceName().'?wsdl';
+        if (! $this->wsdl){
+            $this->wsdl = $this->integrationUrl().'/'.$this->webServiceName().'?wsdl';
+        }
+        return $this->wsdl;
     }
 
     /**
@@ -106,19 +162,30 @@ abstract class EpasRepository
         ];
     }
 
-
+    /**
+     * Throws an exception if not web services url has been set.
+     * @throws ConfigurationException
+     */
     protected function assertWebServiceUrlIsSet(){
         if (! config('epas-repository.webServices')){
             throw new ConfigurationException('EPAS_WEB_SERVICES environment variable is not set');
         }
     }
 
+    /**
+     * Throw an exception if no API username has been specified.
+     * @throws ConfigurationException
+     */
     protected function assertApiUserNameIsSet(){
         if (! config('epas-repository.userName')){
             throw new ConfigurationException('EPAS_API_USER_NAME environment variable is not set');
         }
     }
 
+    /**
+     * Throw an exception if no API Token has been specified.
+     * @throws ConfigurationException
+     */
     protected function assertApiAuthTokenIsSet(){
         if (! config('epas-repository.authToken')){
             throw new ConfigurationException('EPAS_API_AUTH_TOKEN environment variable is not set');
@@ -128,7 +195,7 @@ abstract class EpasRepository
     /**
      * The expected name of the responseAttribute.
      *
-     * The API response from ePAS seems to be wrapped in an XML wrapper that is passwd on
+     * The API response from ePAS seems to be garbed in an XML wrapper that is passwd on
      * the method that was called.  For example, the response to calling GetApplicationsByWorkOrderNumber
      * will be wrapped inside a GetApplicationsByWorkOrderNumberResult.
      *
