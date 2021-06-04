@@ -4,6 +4,7 @@
 namespace Jlab\EpasRepository\Repository;
 
 use Jlab\EpasRepository\Model\Application;
+use RicorocksDigitalAgency\Soap\Facades\Soap;
 
 /**
  * Class ApplicationRepository
@@ -30,20 +31,64 @@ class ApplicationRepository extends EpasRepository
     function findByWorkOrder($orderNumber){
         $params['strWorkOrderNumber'] = $orderNumber;
         $retrieved = $this->call('GetApplicationsByWorkOrderNumber', $params);
-        return $this->collect($this->parseResultDataXml($retrieved));
+        return $this->collect($this->ParseMultipleResultsData($retrieved));
+    }
+
+    /**
+     * Retrieve an ePAS Application using its RemoteRef key.
+     *
+     * The RemoteRef key is sent by the client when it creates an Application via
+     * the API.  The ePAS server enforces uniqueness, so it can be used to retrieve
+     * a single specific Application.
+     *
+     *
+     * @param $remoteRef
+     * @return Application
+     * @throws \Jlab\EpasRepository\Exception\ConfigurationException
+     */
+    function getApplication($remoteRef){
+        $params['strRemoteRef'] = $remoteRef;
+        $retrieved = $this->call('GetApplication', $params);
+        return new Application($this->ParseSingleResultData($retrieved));
     }
 
     /**
      * Save a Permit Application to ePAS
      */
     function save(Application $application){
-        // Local WSDL copy with bogus minOccurs=1 items removed
-        //$this->wsdl = 'http://localhost/epas/ApplicationWebService.asmx.xml';
-        // Direct URL to the method:
-        //return $this->integrationUrl().'/'.$this->webServiceName().'?op=AddApplication';
+        // Make the API call that should persist the data to ePAS database
+        $retrieved = $this->callAddApplication($application);
+
+        // Use the unique remoteRef property that we specified during AddApplication
+        // to turn around and retrieve the newly created Application.
+        return $this->getApplication($application->remoteRef);
+    }
+
+    /**
+     * Special call method that can use locally modified wsdl.
+     *
+     * This is necessary right now because the ePAS wsdl online incorrectly specifies a bunch
+     * of fields as required (minOccurs="1") even though they are not in fact required.
+     * One workaround is to save a local copy of that wsdl where we can change those
+     * unnecessary values to minOccurs="0".
+     *
+     * @param Application $application
+     * @return mixed
+     * @throws \Jlab\EpasRepository\Exception\ConfigurationException
+     */
+    protected function callAddApplication(Application $application){
+        // Must init client to use a local WSDL copy with bogus minOccurs=1 items removed
+        $this->initApiClient(config('epas-repository.applicationWsdl'));
+
+        // Do the API call
         $params['sdoApplication'] = $application->toArray();
         $retrieved = $this->call('AddApplication', $params);
-        return $this->collect($this->parseResultDataXml($retrieved));
+
+        // restore client back to default
+        $this->initApiClient();
+
+        // Return the results of the API call
+        return $retrieved;
     }
 
     /**
@@ -60,7 +105,7 @@ class ApplicationRepository extends EpasRepository
     function applicationTypes(){
         $retrieved = $this->call('GetAllApplicationTypes');
         // Unlike many (most?) other ePAS API calls which return XML ResultData,
-        // this call returns JSON.
+        // this call returns JSON.  Go figure.
         return collect(json_decode($retrieved));
     }
 

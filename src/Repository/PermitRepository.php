@@ -22,7 +22,7 @@ class PermitRepository extends EpasRepository
     function findByWorkOrder($orderNumber){
         $params['strWorkOrderNumber'] = $orderNumber;
         $retrieved = $this->call('GetPermitsByWorkOrderNumber', $params);
-        return $this->collect($this->parseResultDataXml($retrieved));
+        return $this->collect($this->ParseMultipleResultsData($retrieved));
     }
 
 

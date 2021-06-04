@@ -37,6 +37,15 @@ abstract class EpasRepository
      */
     protected $wsdl;
 
+    /**
+     * @var Collection
+     */
+    public $warnings;
+
+    /**
+     * @var mixed
+     */
+    protected $lastResponse;
 
     /**
      * EpasRepository constructor.
@@ -44,6 +53,12 @@ abstract class EpasRepository
      * @throws ConfigurationException if missing config data
      */
     function __construct(){
+        $this->initApiClient();
+        $this->warnings = new Collection();
+    }
+
+    protected function initApiClient($wsdl = null){
+        $this->wsdl = $wsdl;
         $this->apiClient = Soap::to($this->wsdl());
     }
 
@@ -76,7 +91,9 @@ abstract class EpasRepository
             $result = $this->apiClient->call($method, $params);
         }
 
-        return $this->extractResultData($method, $result);
+        $this->lastResponse = $result;
+
+        return $this->resultData($method, $result);
     }
 
     /**
@@ -208,12 +225,15 @@ abstract class EpasRepository
     }
 
     /**
-     * Convert string containing xml from an ePAS API call response into an array of records.
+     * Convert string containing xml from an ePAS API call response into a multi-level array.
+     *
+     * Useful for parsing responses such as GetApplicationsByWorkOrderNumber which returns
+     * data for a multiple Application entities.
      *
      * @param $string
      * @return array
      */
-    protected function parseResultDataXml($string)
+    protected function ParseMultipleResultsData($string)
     {
         $data = [];
         $xml = simplexml_load_string($string);
@@ -222,6 +242,22 @@ abstract class EpasRepository
             $data[] = json_decode($json, true);
         }
         return $data;
+    }
+
+    /**
+     * Convert string containing xml from an ePAS API call response into single level array.
+     *
+     * Useful for parsing responses such as GetApplicationResponse which return data for a single
+     * Application entity.
+     *
+     * @param $string
+     * @return array
+     */
+    protected function ParseSingleResultData($string)
+    {
+        $xml = simplexml_load_string($string);
+        $json = json_encode($xml);
+        return json_decode($json, true);
     }
 
     /**
@@ -238,15 +274,27 @@ abstract class EpasRepository
      */
     protected function assertApiResponseIsGood($method, $response)
     {
+        Log::debug($this->responseName($method));
         if (isset($response->response) && isset($response->response->{$this->responseName($method)})) {
             $result = $response->response->{$this->responseName($method)};
             if ($result->ResultCode >= 1) {
+                if ($result->ResultCode == 2){ // success with warnings
+                    Log::debug('must extract warnings');
+                    $this->saveWarnings($response->response->{$this->responseName($method)}->ResultData);
+                }
                 return true;
             }
             throw new WebServiceException($result->ResultText);
         }
         throw new WebServiceException('Missing or Invalid Web Service Response');
     }
+
+    protected function saveWarnings($resultData){
+       foreach ($this->ParseMultipleResultsData($resultData) as $warning){
+           $this->warnings->push($warning);
+       }
+    }
+
 
     /**
      * Convert array of API results data into a collection of objects.
@@ -274,7 +322,7 @@ abstract class EpasRepository
      * @return mixed
      * @throws WebServiceException
      */
-    protected function extractResultData(string $method, $result)
+    protected function resultData(string $method, $result)
     {
         $this->assertApiResponseIsGood($method, $result);
         return $result->response->{$this->responseName($method)}->ResultData;
