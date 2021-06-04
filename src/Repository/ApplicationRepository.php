@@ -61,7 +61,7 @@ class ApplicationRepository extends EpasRepository
 
         // Use the unique remoteRef property that we specified during AddApplication
         // to turn around and retrieve the newly created Application.
-        return $this->getApplication($application->remoteRef);
+        return $this->getApplication($application->remoteRef());
     }
 
     /**
