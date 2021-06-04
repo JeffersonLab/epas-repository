@@ -49,6 +49,17 @@ interface DocumentInterface
     function surpassRef() : string;
 
     /**
+     * Return the RemoteRef key.
+     *
+     * The RemoteRef key is only available for objects created via the integration API and will
+     * therefore be null for non-integrated objects which may be retrieved.
+     *
+     * @return string|null
+     */
+    function remoteRef(): ?string;
+
+
+    /**
      * Get the title of the permit
      * @return string
      */

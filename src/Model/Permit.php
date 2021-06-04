@@ -2,7 +2,11 @@
 
 namespace Jlab\EpasRepository\Model;
 
-
+/**
+ * Class Application
+ *
+ * An ePAS Permit.
+ */
 class Permit extends BaseModel
 {
 
@@ -34,20 +38,5 @@ class Permit extends BaseModel
         return $this->permitStateName;
     }
 
-    /**
-     * @return string
-     */
-    function surpassRef(): string
-    {
-        return $this->surpassRef;
-    }
-
-    /**
-     * @return string
-     */
-    function title(): string
-    {
-        return $this->title;
-    }
 
 }

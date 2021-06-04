@@ -113,21 +113,7 @@ class Application extends BaseModel
         return $this->applicationStateName;
     }
 
-    /**
-     * @return string
-     */
-    function surpassRef(): string
-    {
-        return $this->surpassRef;
-    }
 
-    /**
-     * @return string
-     */
-    function title(): string
-    {
-        return $this->title;
-    }
 
 
 }

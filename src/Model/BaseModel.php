@@ -27,6 +27,36 @@ abstract class BaseModel implements DocumentInterface
         return $this->data;
     }
 
+    /**
+     * @inheritDoc
+     *
+     * @return string|null
+     */
+    function remoteRef(): ?string {
+        return array_key_exists('RemoteRef', $this->data) ? $this->data['RemoteRef'] : null;
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @return string
+     */
+    function surpassRef(): string
+    {
+        return $this->surpassRef;
+    }
+
+    /**
+     * @inheritDoc
+     *
+     * @return string
+     */
+    function title(): string
+    {
+        return $this->title;
+    }
+
+
 
     /**
      * Magic method allowing access to model attributes.
