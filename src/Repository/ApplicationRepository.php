@@ -85,14 +85,14 @@ class ApplicationRepository extends EpasRepository
      */
     protected function callAddApplication(Application $application){
         // Must init client to use a local WSDL copy with bogus minOccurs=1 items removed
-        $this->initApiClient(config('epas-repository.applicationWsdl'));
+        // $this->initApiClient(config('epas-repository.applicationWsdl'));
 
         // Do the API call
         $params['sdoApplication'] = $application->toArray();
         $retrieved = $this->call('AddApplication', $params);
 
         // restore client back to default
-        $this->initApiClient();
+        //$this->initApiClient();
 
         // Return the results of the API call
         return $retrieved;
