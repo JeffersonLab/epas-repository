@@ -15,6 +15,13 @@ use RicorocksDigitalAgency\Soap\Facades\Soap;
  */
 class ApplicationRepository extends EpasRepository
 {
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->initApiClient(config('epas-repository.applicationWsdl'));
+    }
+
     /**
      * Retrieve ePAS applications related to the specified work order number.
      *

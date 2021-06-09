@@ -6,6 +6,14 @@ use Jlab\EpasRepository\Model\Permit;
 
 class PermitRepository extends EpasRepository
 {
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->initApiClient(config('epas-repository.permitWsdl'));
+    }
+
+
     /**
      * Retrieve ePAS permits related to the specified work order number.
      *
