@@ -10,7 +10,7 @@ class PermitRepository extends EpasRepository
     public function __construct()
     {
         parent::__construct();
-        $this->initApiClient(config('epas-repository.permitWsdl'));
+        $this->wsdl = config('epas-repository.permitWsdl');
     }
 
 

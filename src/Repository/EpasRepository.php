@@ -53,12 +53,15 @@ abstract class EpasRepository
      * @throws ConfigurationException if missing config data
      */
     function __construct(){
-        $this->initApiClient();
         $this->warnings = new Collection();
     }
 
-    protected function initApiClient($wsdl = null){
-        $this->wsdl = $wsdl;
+    /**
+     * Prepare the SOAP Client to make a call.
+     *
+     * @throws ConfigurationException
+     */
+    protected function initApiClient(){
         $this->apiClient = Soap::to($this->wsdl());
     }
 
@@ -81,6 +84,8 @@ abstract class EpasRepository
      */
     function call(string $method, array $params = [], bool $withAuth = true)
     {
+        $this->initApiClient();
+
         if ($withAuth) {
             $params = $this->authParam() + $params;
         }
@@ -274,12 +279,10 @@ abstract class EpasRepository
      */
     protected function assertApiResponseIsGood($method, $response)
     {
-        Log::debug($this->responseName($method));
         if (isset($response->response) && isset($response->response->{$this->responseName($method)})) {
             $result = $response->response->{$this->responseName($method)};
             if ($result->ResultCode >= 1) {
                 if ($result->ResultCode == 2){ // success with warnings
-                    Log::debug('must extract warnings');
                     $this->saveWarnings($response->response->{$this->responseName($method)}->ResultData);
                 }
                 return true;

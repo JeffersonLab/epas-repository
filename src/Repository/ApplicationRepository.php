@@ -19,7 +19,7 @@ class ApplicationRepository extends EpasRepository
     public function __construct()
     {
         parent::__construct();
-        $this->initApiClient(config('epas-repository.applicationWsdl'));
+        $this->wsdl = config('epas-repository.applicationWsdl');
     }
 
     /**
@@ -90,9 +90,6 @@ class ApplicationRepository extends EpasRepository
         // Do the API call
         $params['sdoApplication'] = $application->toArray();
         $retrieved = $this->call('AddApplication', $params);
-
-        // restore client back to default
-        //$this->initApiClient();
 
         // Return the results of the API call
         return $retrieved;
