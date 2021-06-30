@@ -2,6 +2,7 @@
 
 namespace Jlab\EpasRepository\Repository;
 
+use Illuminate\Support\Collection;
 use Jlab\EpasRepository\Model\Permit;
 
 class PermitRepository extends EpasRepository
@@ -29,8 +30,19 @@ class PermitRepository extends EpasRepository
      */
     function findByWorkOrder($orderNumber){
         $params['strWorkOrderNumber'] = $orderNumber;
-        $retrieved = $this->call('GetPermitsByWorkOrderNumber', $params);
-        return $this->collect($this->ParseMultipleResultsData($retrieved));
+        try{
+            $retrieved = $this->call('GetPermitsByWorkOrderNumber', $params);
+            return $this->collect($this->ParseMultipleResultsData($retrieved));
+        }catch(\Exception $e){
+            // Unfortunately, we need to parse the exception text to see if
+            // it's simply a matter of no records located and we can just
+            // return an empty result set.
+            if (stristr($e->getMessage(),'No permit record located')){
+                return new Collection();  // empty result set
+            }
+            // re-throw any other exceptions
+            throw $e;
+        }
     }
 
 

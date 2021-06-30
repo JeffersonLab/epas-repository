@@ -8,7 +8,7 @@ abstract class BaseModel implements DocumentInterface
 {
     /**
      * The ePAS Application data attributes.
-     * @see ePAS API documentation for list and definitions.
+     * @see Epas Service API documentation for list and definitions.
      * @var array
      */
     protected $data = [];

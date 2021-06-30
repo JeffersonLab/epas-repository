@@ -3,6 +3,10 @@
 
 namespace Jlab\EpasRepository\Repository;
 
+use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Validator;
+use Jlab\EpasRepository\Exception\ModelException;
+use Jlab\EpasRepository\Exception\ValidationException;
 use Jlab\EpasRepository\Model\Application;
 use RicorocksDigitalAgency\Soap\Facades\Soap;
 
@@ -15,6 +19,8 @@ use RicorocksDigitalAgency\Soap\Facades\Soap;
  */
 class ApplicationRepository extends EpasRepository
 {
+
+
 
     public function __construct()
     {
@@ -35,10 +41,22 @@ class ApplicationRepository extends EpasRepository
      * @return \Illuminate\Support\Collection
      * @throws \Jlab\EpasRepository\Exception\ConfigurationException
      */
-    function findByWorkOrder($orderNumber){
+    function findByWorkOrder($orderNumber)
+    {
         $params['strWorkOrderNumber'] = $orderNumber;
-        $retrieved = $this->call('GetApplicationsByWorkOrderNumber', $params);
-        return $this->collect($this->ParseMultipleResultsData($retrieved));
+        try {
+            $retrieved = $this->call('GetApplicationsByWorkOrderNumber', $params);
+            return $this->collect($this->ParseMultipleResultsData($retrieved));
+        } catch (\Exception $e) {
+            // Unfortunately, we need to parse the exception text to see if
+            // it's simply a matter of no records located and we can just
+            // return an empty result set.
+            if (stristr($e->getMessage(), 'No application record located')) {
+                return new Collection();  // empty result set
+            }
+            // re-throw any other exceptions
+            throw $e;
+        }
     }
 
     /**
@@ -63,6 +81,9 @@ class ApplicationRepository extends EpasRepository
      * Save a Permit Application to ePAS
      */
     function save(Application $application){
+
+        $this->assertIsValidToSave($application);
+
         // Make the API call that should persist the data to ePAS database
         $retrieved = $this->callAddApplication($application);
 
@@ -122,4 +143,17 @@ class ApplicationRepository extends EpasRepository
         return new Application($data);
     }
 
+    /**
+     * Generates a validation exception if the provided application does not meet local criteria.
+     *
+     * @return void
+     * @throws ValidationException
+     */
+    protected function assertIsValidToSave(Application $application){
+        // @see https://laravel.com/docs/validation#available-validation-rules
+        $validator = Validator::make($application->toArray(), config('epas-repository.applicationRules'));
+        if ($validator->fails()) {
+            throw new ValidationException('The permit application cannot be submitted because it contains errors',$validator->errors()->all());
+        }
+    }
 }

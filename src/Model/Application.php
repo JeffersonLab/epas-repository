@@ -9,7 +9,6 @@ namespace Jlab\EpasRepository\Model;
  */
 class Application extends BaseModel
 {
-
     /**
      * The ePAS Application data attributes.
      *
@@ -21,7 +20,7 @@ class Application extends BaseModel
      * appears that it internally uses "-2147483648" as something akin to null for integers.
      *
      *
-     * @see ePAS API documentation for list and definitions.
+     * @see EpasService API documentation for list and definitions.
      * @var array
      */
     protected $data = [
@@ -112,8 +111,5 @@ class Application extends BaseModel
     {
         return $this->applicationStateName;
     }
-
-
-
 
 }

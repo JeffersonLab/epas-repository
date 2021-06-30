@@ -11,4 +11,15 @@ return [
     // and services defined to use https instead of http.
     'applicationWsdl' => env('APPLICATION_WSDL','http://localhost/epas/ApplicationWebServiceWsdl.xml'),
     'permitWsdl' => env('PERMIT_WSDL','http://localhost/epas/PermitWebServiceWsdl.xml'),
+
+    // Local validation rules that an Application must pass before submission to ePAS server
+    // @see https://laravel.com/docs/validation#available-validation-rules
+    'applicationRules' => [
+        'RemoteRef' => 'required',
+        'Title' => 'required',
+        'ResponsibilityGroupName' => 'required',
+        'ApplicationTypeName' => 'required',
+        'WorkOrderNumber' => 'required',
+    ],
+
 ];
