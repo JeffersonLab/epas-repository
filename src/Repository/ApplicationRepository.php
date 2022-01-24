@@ -60,6 +60,26 @@ class ApplicationRepository extends EpasRepository
     }
 
     /**
+     * Retrieve an ePAS applications by its unique RemoteRef identifier.
+     *
+     * The ePAS remoteRef field is a string field that contains a unique identifier specified
+     * by the upstream integrator.
+     * will be in the format {system}{id}{date('YmdHis')}.
+     *
+     * ex:  ATLIS-22220-20220112094541
+     *
+     * @param $remoteRef
+     * @return Application
+     * @throws \Jlab\EpasRepository\Exception\ConfigurationException
+     */
+    function findByRemoteRef($remoteRef)
+    {
+        $params['strRemoteRef'] = $remoteRef;
+        $retrieved = $this->call('GetApplication', $params);
+        return $this->makeModel($this->ParseSingleResultData($retrieved));
+    }
+
+    /**
      * Retrieve an ePAS Application using its RemoteRef key.
      *
      * The RemoteRef key is sent by the client when it creates an Application via
@@ -91,6 +111,24 @@ class ApplicationRepository extends EpasRepository
         // to turn around and retrieve the newly created Application.
         return $this->getApplication($application->remoteRef());
     }
+
+    /**
+     * Delete a Permit Application from ePAS
+     * @param string $remoteRef
+     * @return bool
+     * @throws \Jlab\EpasRepository\Exception\ConfigurationException
+     */
+    function delete(string $remoteRef){
+        $params['strRemoteRef'] = $remoteRef;
+        // Make the API call that should remove the application
+        $this->call('DeleteApplication', $params);
+
+        // If there was no error thrown by the call above, the deletion must have
+        // succeeded, so we return true.
+        return true;
+    }
+
+
 
     /**
      * Special call method that can use locally modified wsdl.
@@ -156,4 +194,5 @@ class ApplicationRepository extends EpasRepository
             throw new ValidationException('The permit application cannot be submitted because it contains errors',$validator->errors()->all());
         }
     }
+
 }

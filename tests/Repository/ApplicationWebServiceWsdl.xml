@@ -1,0 +1,1606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://www.SageTechnology.com.au/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://www.SageTechnology.com.au/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.SageTechnology.com.au/">
+      <s:element name="AddApplication">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoApplication" type="tns:Application"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AuthObject">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AuthKey" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Application">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:IntegrationDataTransferObject">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="ResponsibilityGroupName" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ResponsibilityGroupID" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ApplicationTypeID" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ApplicationTypeName" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ApplicationStateName" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ApplicationStateID" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ApplicationNumber" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="Title" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="SpecialRequirements" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="WorkOrderNumber" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="OutageID" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="OutageName" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="WorkGroupName" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="WorkGroupID" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="Notes" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="RequiredDateTime" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="PlantItemRemoteRef" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="AreaName" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="TrainName" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="TrainID" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="UnitName" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="DirectionalityID" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="DirectionalityName" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ApplicationRecipientRemoteRef" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ExpectedReturnDateTime" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="LastUpdatedDate" type="s:dateTime"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ProjectAreaDetails_Complete" type="s:boolean"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ApplicantDetails_Complete" type="s:boolean"/>
+              <s:element minOccurs="0" maxOccurs="1" name="Approvals" type="tns:ArrayOfApplicationTypeStateTransitionRequiredApproval"/>
+              <s:element minOccurs="0" maxOccurs="1" name="AdditionalTextColumn1" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="AdditionalTextColumn2" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="AdditionalTextColumn3" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="AdditionalTextColumn4" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="AdditionalTextColumn5" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="AdditionalTextColumn6" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="AdditionalTextColumn7" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="AdditionalTextColumn8" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="AdditionalTextColumn9" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="AdditionalTextColumn10" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="AdditionalTextColumn11" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="AdditionalTextColumn12" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="PrimaryPlantItemID" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="HIRAID" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="PermitTypeID" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="PlantItems" type="tns:ArrayOfPlantItem"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ResidualRiskConcernID" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ResidualRiskConsequenceID" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ResidualRiskLikelihoodID" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ResidualRiskRatingID" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ApplicationWorkflowTimeline" type="tns:ArrayOfWorkflowGenericState"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ApplicationRecipients" type="tns:ArrayOfApplicationRecipient"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ApplicationWorkScopes" type="tns:ArrayOfApplicationWorkScope"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ApplicationDocs" type="tns:ArrayOfApplicationDoc"/>
+              <s:element minOccurs="0" maxOccurs="1" name="WorkCategories" type="tns:ArrayOfWorkCategory"/>
+              <s:element minOccurs="0" maxOccurs="1" name="Hazards" type="tns:ArrayOfHazard"/>
+              <s:element minOccurs="0" maxOccurs="1" name="Controls" type="tns:ArrayOfControl"/>
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="IntegrationDataTransferObject">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RemoteRef" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="SurpassRef" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="CreatedByRemoteRef" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Hazard">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:IntegrationDataTransferObject">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="HazardID" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string"/>
+              <s:element minOccurs="1" maxOccurs="1" name="Strikethrough" type="s:boolean"/>
+              <s:element minOccurs="1" maxOccurs="1" name="IsMandatory" type="s:boolean"/>
+              <s:element minOccurs="0" maxOccurs="1" name="Reason" type="s:string"/>
+              <s:element minOccurs="1" maxOccurs="1" name="SortSequence" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="PermitTypeIDs" type="tns:ArrayOfInt"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ApplicationTypeIDs" type="tns:ArrayOfInt"/>
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="WorkCategory">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:IntegrationDataTransferObject">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="WorkCategoryID" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string"/>
+              <s:element minOccurs="1" maxOccurs="1" name="SortSequence" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="PermitTypeIDs" type="tns:ArrayOfInt"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ApplicationTypeIDs" type="tns:ArrayOfInt"/>
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ApplicationDoc">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:IntegrationDataTransferObject">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="ParentRemoteRef" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ParentSurpassRef" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="Reference" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="SnapshotSource" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="DocTypesList" type="tns:ArrayOfString"/>
+              <s:element minOccurs="0" maxOccurs="1" name="IsDocument" type="s:boolean"/>
+              <s:element minOccurs="0" maxOccurs="1" name="IsURL" type="s:boolean"/>
+              <s:element minOccurs="0" maxOccurs="1" name="IsDMS" type="s:boolean"/>
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ApplicationWorkScope">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:IntegrationDataTransferObject">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="ParentRemoteRef" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ParentSurpassRef" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ToolsAndEquipment" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="PrimaryPlantItemRemoteRef" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="WorkOrderRef" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="PlantItemRemoteRefs" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="PlantItemRemoteRefsList" type="tns:ArrayOfString"/>
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ApplicationRecipient">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:IntegrationDataTransferObject">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="ParentRemoteRef" type="s:string"/>
+              <s:element minOccurs="1" maxOccurs="1" name="ParentSurpassRef" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="RecipientTypeName" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="SignatureSheets" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="PersonRemoteRef" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="PersonSurpassRef" type="s:int"/>
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="PlantItem">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:IntegrationDataTransferObject">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="Location" type="s:string"/>
+              <s:element minOccurs="1" maxOccurs="1" name="ResponsibilityGroupID" type="s:int"/>
+              <s:element minOccurs="1" maxOccurs="1" name="ParentPlantItemID" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="HazardIDs" type="tns:ArrayOfInt"/>
+              <s:element minOccurs="0" maxOccurs="1" name="DefaultIsolationCondition" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="DefaultRestoreCondition" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="EquipmentNum" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="PlantIdentifier" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="BarcodeID" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="IsolationPointNum" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="FunctionalLocation" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="SCADAPointID" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="SCADAAlarmPointID" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="SwitchboardCubicleNumber" type="s:string"/>
+              <s:element minOccurs="1" maxOccurs="1" name="PlantGroupID" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="PlantGroupName" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="PlantTypeName" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="IsolationTypeDescription" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="CircuitVoltageValue" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ParentPlantItemRemoteRef" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="IsLimitedAuthority" type="s:boolean"/>
+              <s:element minOccurs="0" maxOccurs="1" name="IsPlantItem" type="s:boolean"/>
+              <s:element minOccurs="0" maxOccurs="1" name="IsIsolationPoint" type="s:boolean"/>
+              <s:element minOccurs="0" maxOccurs="1" name="IsConfinedSpace" type="s:boolean"/>
+              <s:element minOccurs="0" maxOccurs="1" name="IsSafetySystem" type="s:boolean"/>
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Control">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:IntegrationDataTransferObject">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ControlID" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string"/>
+              <s:element minOccurs="1" maxOccurs="1" name="Strikethrough" type="s:boolean"/>
+              <s:element minOccurs="1" maxOccurs="1" name="IsMandatory" type="s:boolean"/>
+              <s:element minOccurs="1" maxOccurs="1" name="ControlTypeID" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="Reason" type="s:string"/>
+              <s:element minOccurs="1" maxOccurs="1" name="SortSequence" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="PermitTypeIDs" type="tns:ArrayOfInt"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ApplicationTypeIDs" type="tns:ArrayOfInt"/>
+              <s:element minOccurs="0" maxOccurs="1" name="MandatoryControlAction" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="MandatoryControlReason" type="s:string"/>
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ApplicationTypeStateTransitionRequiredApproval">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:IntegrationDataTransferObject">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ApplicationTypeStateTransitionRequiredApprovalID" type="s:int"/>
+              <s:element minOccurs="1" maxOccurs="1" name="ApplicationTypeStateTransitionID" type="s:int"/>
+              <s:element minOccurs="1" maxOccurs="1" name="SystemRoleTypeID" type="s:int"/>
+              <s:element minOccurs="1" maxOccurs="1" name="ApprovalOrder" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="Declaration" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ApprovalPurpose" type="s:string"/>
+              <s:element minOccurs="1" maxOccurs="1" name="IsReasonRequiredToReject" type="s:boolean"/>
+              <s:element minOccurs="1" maxOccurs="1" name="IsReasonRequiredToApprove" type="s:boolean"/>
+              <s:element minOccurs="1" maxOccurs="1" name="RequiredWhenRevisionsExist" type="s:boolean"/>
+              <s:element minOccurs="1" maxOccurs="1" name="OnlyRequiredWhenTagsToRestore" type="s:boolean"/>
+              <s:element minOccurs="1" maxOccurs="1" name="IsComplete" type="s:boolean"/>
+              <s:element minOccurs="1" maxOccurs="1" name="IsApproved" type="s:boolean"/>
+              <s:element minOccurs="1" maxOccurs="1" name="IsRejected" type="s:boolean"/>
+              <s:element minOccurs="0" maxOccurs="1" name="ApprovalReason" type="s:string"/>
+              <s:element minOccurs="1" maxOccurs="1" name="ApprovalDate" type="s:dateTime"/>
+              <s:element minOccurs="0" maxOccurs="1" name="UserApproved" type="s:string"/>
+              <s:element minOccurs="0" maxOccurs="1" name="header" type="s:string"/>
+              <s:element minOccurs="1" maxOccurs="1" name="SystemRoleID" type="s:int"/>
+              <s:element minOccurs="0" maxOccurs="1" name="MandatoryControls" type="tns:ArrayOfControl"/>
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfControl">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Control" nillable="true" type="tns:Control"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfApplicationTypeStateTransitionRequiredApproval">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ApplicationTypeStateTransitionRequiredApproval" nillable="true" type="tns:ApplicationTypeStateTransitionRequiredApproval"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPlantItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PlantItem" nillable="true" type="tns:PlantItem"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfWorkflowGenericState">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="WorkflowGenericState" nillable="true" type="tns:WorkflowGenericState"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="WorkflowGenericState">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="StateID" type="s:int"/>
+          <s:element minOccurs="1" maxOccurs="1" name="IsCurrent" type="s:boolean"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfApplicationRecipient">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ApplicationRecipient" nillable="true" type="tns:ApplicationRecipient"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfApplicationWorkScope">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ApplicationWorkScope" nillable="true" type="tns:ApplicationWorkScope"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfApplicationDoc">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ApplicationDoc" nillable="true" type="tns:ApplicationDoc"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfWorkCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="WorkCategory" nillable="true" type="tns:WorkCategory"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfHazard">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Hazard" nillable="true" type="tns:Hazard"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddApplicationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddApplicationResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ResultObject">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ResultCode" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ResultText" type="s:string"/>
+          <s:element minOccurs="1" maxOccurs="1" name="SurpassRef" type="s:int"/>
+          <s:element minOccurs="0" maxOccurs="1" name="RemoteRef" type="s:string"/>
+          <s:element minOccurs="0" maxOccurs="1" name="ResultData"/>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfApplication">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Application" nillable="true" type="tns:Application"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateApplication">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoApplication" type="tns:Application"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateApplicationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateApplicationResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ApplicationToNextDefaultState">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="1" maxOccurs="1" name="FromStateID" type="s:int"/>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoApplication" type="tns:Application"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ApplicationToNextDefaultStateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ApplicationToNextDefaultStateResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ApplicationToNonDefaultState">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="1" maxOccurs="1" name="ToStateID" type="s:int"/>
+            <s:element minOccurs="1" maxOccurs="1" name="FromStateID" type="s:int"/>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoApplication" type="tns:Application"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ApplicationToNonDefaultStateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ApplicationToNonDefaultStateResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ApplicationToSubmitted">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="1" maxOccurs="1" name="intSurpassRef" type="s:int"/>
+            <s:element minOccurs="0" maxOccurs="1" name="strRemoteRef" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ApplicationToSubmittedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ApplicationToSubmittedResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePermitFromApplication">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="1" maxOccurs="1" name="intSurpassRef" type="s:int"/>
+            <s:element minOccurs="0" maxOccurs="1" name="strRemoteRef" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePermitFromApplicationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CreatePermitFromApplicationResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CloseApplication">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="0" maxOccurs="1" name="strRemoteRef" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CloseApplicationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CloseApplicationResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteApplication">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="0" maxOccurs="1" name="strRemoteRef" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteApplicationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteApplicationResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteApplicationByWorkOrderNumber">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="0" maxOccurs="1" name="strWorkOrderNo" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteApplicationByWorkOrderNumberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteApplicationByWorkOrderNumberResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllActiveApplications">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllActiveApplicationsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetAllActiveApplicationsResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllRecentUpdatedApplicationsFromDate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="0" maxOccurs="1" name="fromDate" type="s:string"/>
+            <s:element minOccurs="1" maxOccurs="1" name="offset" type="s:int"/>
+            <s:element minOccurs="1" maxOccurs="1" name="numberOfRows" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllRecentUpdatedApplicationsFromDateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetAllRecentUpdatedApplicationsFromDateResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetApplication">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="0" maxOccurs="1" name="strRemoteRef" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetApplicationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetApplicationResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetApplicationsByWorkOrderNumbers">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="0" maxOccurs="1" name="workOrderRefs" type="tns:ArrayOfString"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetApplicationsByWorkOrderNumbersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetApplicationsByWorkOrderNumbersResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetApplicationBySurpassRef">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="1" maxOccurs="1" name="intSurpassRef" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetApplicationBySurpassRefResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetApplicationBySurpassRefResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetApplicationBySurpassRefAsJSON">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="1" maxOccurs="1" name="intSurpassRef" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetApplicationBySurpassRefAsJSONResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetApplicationBySurpassRefAsJSONResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetApplicationsByWorkOrderNumber">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="0" maxOccurs="1" name="strWorkOrderNumber" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetApplicationsByWorkOrderNumberResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetApplicationsByWorkOrderNumberResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetApplicationsByState">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="0" maxOccurs="1" name="strStateName" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetApplicationsByStateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetApplicationsByStateResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetApplicationsByOutage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="0" maxOccurs="1" name="strOutageName" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetApplicationsByOutageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetApplicationsByOutageResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllApplicationTypes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllApplicationTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetAllApplicationTypesResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddWorkCategory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="1" maxOccurs="1" name="applicationID" type="s:int"/>
+            <s:element minOccurs="0" maxOccurs="1" name="remoteRef" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="workCategoryNames" type="tns:ArrayOfString"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddWorkCategoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddWorkCategoryResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddSingleWorkCategoryByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="1" maxOccurs="1" name="applicationID" type="s:int"/>
+            <s:element minOccurs="0" maxOccurs="1" name="remoteRef" type="s:string"/>
+            <s:element minOccurs="1" maxOccurs="1" name="workCategoryID" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddSingleWorkCategoryByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddSingleWorkCategoryByIDResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddSingleWorkCategoryByName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="1" maxOccurs="1" name="applicationID" type="s:int"/>
+            <s:element minOccurs="0" maxOccurs="1" name="remoteRef" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddSingleWorkCategoryByNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddSingleWorkCategoryByNameResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddHazard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="1" maxOccurs="1" name="applicationID" type="s:int"/>
+            <s:element minOccurs="0" maxOccurs="1" name="remoteRef" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="HazardNames" type="tns:ArrayOfString"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddHazardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddHazardResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddSingleHazardByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="1" maxOccurs="1" name="applicationID" type="s:int"/>
+            <s:element minOccurs="0" maxOccurs="1" name="remoteRef" type="s:string"/>
+            <s:element minOccurs="1" maxOccurs="1" name="HazardID" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddSingleHazardByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddSingleHazardByIDResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddSingleHazardByName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="1" maxOccurs="1" name="applicationID" type="s:int"/>
+            <s:element minOccurs="0" maxOccurs="1" name="remoteRef" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddSingleHazardByNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddSingleHazardByNameResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddControl">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="1" maxOccurs="1" name="applicationID" type="s:int"/>
+            <s:element minOccurs="0" maxOccurs="1" name="remoteRef" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="ControlNames" type="tns:ArrayOfString"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddControlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddControlResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddSingleControlByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="1" maxOccurs="1" name="applicationID" type="s:int"/>
+            <s:element minOccurs="0" maxOccurs="1" name="remoteRef" type="s:string"/>
+            <s:element minOccurs="1" maxOccurs="1" name="ControlID" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddSingleControlByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddSingleControlByIDResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddSingleControlByName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="1" maxOccurs="1" name="applicationID" type="s:int"/>
+            <s:element minOccurs="0" maxOccurs="1" name="remoteRef" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddSingleControlByNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddSingleControlByNameResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateApplicationApproval">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sdoAuthObject" type="tns:AuthObject"/>
+            <s:element minOccurs="1" maxOccurs="1" name="SurpassRef" type="s:int"/>
+            <s:element minOccurs="0" maxOccurs="1" name="RemoteRef" type="s:string"/>
+            <s:element minOccurs="1" maxOccurs="1" name="ApplicationTypeStateTransitionRequiredApprovalID" type="s:int"/>
+            <s:element minOccurs="0" maxOccurs="1" name="ApprovalStatus" type="s:string"/>
+            <s:element minOccurs="0" maxOccurs="1" name="Reason" type="s:string"/>
+            <s:element minOccurs="1" maxOccurs="1" name="PersonID" type="s:int"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateApplicationApprovalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateApplicationApprovalResult" nillable="true" type="tns:ResultObject"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AddApplicationSoapIn">
+    <wsdl:part name="parameters" element="tns:AddApplication"/>
+  </wsdl:message>
+  <wsdl:message name="AddApplicationSoapOut">
+    <wsdl:part name="parameters" element="tns:AddApplicationResponse"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateApplicationSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateApplication"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateApplicationSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateApplicationResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ApplicationToNextDefaultStateSoapIn">
+    <wsdl:part name="parameters" element="tns:ApplicationToNextDefaultState"/>
+  </wsdl:message>
+  <wsdl:message name="ApplicationToNextDefaultStateSoapOut">
+    <wsdl:part name="parameters" element="tns:ApplicationToNextDefaultStateResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ApplicationToNonDefaultStateSoapIn">
+    <wsdl:part name="parameters" element="tns:ApplicationToNonDefaultState"/>
+  </wsdl:message>
+  <wsdl:message name="ApplicationToNonDefaultStateSoapOut">
+    <wsdl:part name="parameters" element="tns:ApplicationToNonDefaultStateResponse"/>
+  </wsdl:message>
+  <wsdl:message name="ApplicationToSubmittedSoapIn">
+    <wsdl:part name="parameters" element="tns:ApplicationToSubmitted"/>
+  </wsdl:message>
+  <wsdl:message name="ApplicationToSubmittedSoapOut">
+    <wsdl:part name="parameters" element="tns:ApplicationToSubmittedResponse"/>
+  </wsdl:message>
+  <wsdl:message name="CreatePermitFromApplicationSoapIn">
+    <wsdl:part name="parameters" element="tns:CreatePermitFromApplication"/>
+  </wsdl:message>
+  <wsdl:message name="CreatePermitFromApplicationSoapOut">
+    <wsdl:part name="parameters" element="tns:CreatePermitFromApplicationResponse"/>
+  </wsdl:message>
+  <wsdl:message name="CloseApplicationSoapIn">
+    <wsdl:part name="parameters" element="tns:CloseApplication"/>
+  </wsdl:message>
+  <wsdl:message name="CloseApplicationSoapOut">
+    <wsdl:part name="parameters" element="tns:CloseApplicationResponse"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteApplicationSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteApplication"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteApplicationSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteApplicationResponse"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteApplicationByWorkOrderNumberSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteApplicationByWorkOrderNumber"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteApplicationByWorkOrderNumberSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteApplicationByWorkOrderNumberResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetAllActiveApplicationsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllActiveApplications"/>
+  </wsdl:message>
+  <wsdl:message name="GetAllActiveApplicationsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllActiveApplicationsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetAllRecentUpdatedApplicationsFromDateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllRecentUpdatedApplicationsFromDate"/>
+  </wsdl:message>
+  <wsdl:message name="GetAllRecentUpdatedApplicationsFromDateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllRecentUpdatedApplicationsFromDateResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetApplicationSoapIn">
+    <wsdl:part name="parameters" element="tns:GetApplication"/>
+  </wsdl:message>
+  <wsdl:message name="GetApplicationSoapOut">
+    <wsdl:part name="parameters" element="tns:GetApplicationResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetApplicationsByWorkOrderNumbersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetApplicationsByWorkOrderNumbers"/>
+  </wsdl:message>
+  <wsdl:message name="GetApplicationsByWorkOrderNumbersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetApplicationsByWorkOrderNumbersResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetApplicationBySurpassRefSoapIn">
+    <wsdl:part name="parameters" element="tns:GetApplicationBySurpassRef"/>
+  </wsdl:message>
+  <wsdl:message name="GetApplicationBySurpassRefSoapOut">
+    <wsdl:part name="parameters" element="tns:GetApplicationBySurpassRefResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetApplicationBySurpassRefAsJSONSoapIn">
+    <wsdl:part name="parameters" element="tns:GetApplicationBySurpassRefAsJSON"/>
+  </wsdl:message>
+  <wsdl:message name="GetApplicationBySurpassRefAsJSONSoapOut">
+    <wsdl:part name="parameters" element="tns:GetApplicationBySurpassRefAsJSONResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetApplicationsByWorkOrderNumberSoapIn">
+    <wsdl:part name="parameters" element="tns:GetApplicationsByWorkOrderNumber"/>
+  </wsdl:message>
+  <wsdl:message name="GetApplicationsByWorkOrderNumberSoapOut">
+    <wsdl:part name="parameters" element="tns:GetApplicationsByWorkOrderNumberResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetApplicationsByStateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetApplicationsByState"/>
+  </wsdl:message>
+  <wsdl:message name="GetApplicationsByStateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetApplicationsByStateResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetApplicationsByOutageSoapIn">
+    <wsdl:part name="parameters" element="tns:GetApplicationsByOutage"/>
+  </wsdl:message>
+  <wsdl:message name="GetApplicationsByOutageSoapOut">
+    <wsdl:part name="parameters" element="tns:GetApplicationsByOutageResponse"/>
+  </wsdl:message>
+  <wsdl:message name="GetAllApplicationTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllApplicationTypes"/>
+  </wsdl:message>
+  <wsdl:message name="GetAllApplicationTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllApplicationTypesResponse"/>
+  </wsdl:message>
+  <wsdl:message name="AddWorkCategorySoapIn">
+    <wsdl:part name="parameters" element="tns:AddWorkCategory"/>
+  </wsdl:message>
+  <wsdl:message name="AddWorkCategorySoapOut">
+    <wsdl:part name="parameters" element="tns:AddWorkCategoryResponse"/>
+  </wsdl:message>
+  <wsdl:message name="AddSingleWorkCategoryByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:AddSingleWorkCategoryByID"/>
+  </wsdl:message>
+  <wsdl:message name="AddSingleWorkCategoryByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:AddSingleWorkCategoryByIDResponse"/>
+  </wsdl:message>
+  <wsdl:message name="AddSingleWorkCategoryByNameSoapIn">
+    <wsdl:part name="parameters" element="tns:AddSingleWorkCategoryByName"/>
+  </wsdl:message>
+  <wsdl:message name="AddSingleWorkCategoryByNameSoapOut">
+    <wsdl:part name="parameters" element="tns:AddSingleWorkCategoryByNameResponse"/>
+  </wsdl:message>
+  <wsdl:message name="AddHazardSoapIn">
+    <wsdl:part name="parameters" element="tns:AddHazard"/>
+  </wsdl:message>
+  <wsdl:message name="AddHazardSoapOut">
+    <wsdl:part name="parameters" element="tns:AddHazardResponse"/>
+  </wsdl:message>
+  <wsdl:message name="AddSingleHazardByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:AddSingleHazardByID"/>
+  </wsdl:message>
+  <wsdl:message name="AddSingleHazardByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:AddSingleHazardByIDResponse"/>
+  </wsdl:message>
+  <wsdl:message name="AddSingleHazardByNameSoapIn">
+    <wsdl:part name="parameters" element="tns:AddSingleHazardByName"/>
+  </wsdl:message>
+  <wsdl:message name="AddSingleHazardByNameSoapOut">
+    <wsdl:part name="parameters" element="tns:AddSingleHazardByNameResponse"/>
+  </wsdl:message>
+  <wsdl:message name="AddControlSoapIn">
+    <wsdl:part name="parameters" element="tns:AddControl"/>
+  </wsdl:message>
+  <wsdl:message name="AddControlSoapOut">
+    <wsdl:part name="parameters" element="tns:AddControlResponse"/>
+  </wsdl:message>
+  <wsdl:message name="AddSingleControlByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:AddSingleControlByID"/>
+  </wsdl:message>
+  <wsdl:message name="AddSingleControlByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:AddSingleControlByIDResponse"/>
+  </wsdl:message>
+  <wsdl:message name="AddSingleControlByNameSoapIn">
+    <wsdl:part name="parameters" element="tns:AddSingleControlByName"/>
+  </wsdl:message>
+  <wsdl:message name="AddSingleControlByNameSoapOut">
+    <wsdl:part name="parameters" element="tns:AddSingleControlByNameResponse"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateApplicationApprovalSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateApplicationApproval"/>
+  </wsdl:message>
+  <wsdl:message name="UpdateApplicationApprovalSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateApplicationApprovalResponse"/>
+  </wsdl:message>
+  <wsdl:portType name="API_ApplicationWebServiceSoap">
+    <wsdl:operation name="AddApplication">
+      <wsdl:input message="tns:AddApplicationSoapIn"/>
+      <wsdl:output message="tns:AddApplicationSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateApplication">
+      <wsdl:input message="tns:UpdateApplicationSoapIn"/>
+      <wsdl:output message="tns:UpdateApplicationSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="ApplicationToNextDefaultState">
+      <wsdl:input message="tns:ApplicationToNextDefaultStateSoapIn"/>
+      <wsdl:output message="tns:ApplicationToNextDefaultStateSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="ApplicationToNonDefaultState">
+      <wsdl:input message="tns:ApplicationToNonDefaultStateSoapIn"/>
+      <wsdl:output message="tns:ApplicationToNonDefaultStateSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="ApplicationToSubmitted">
+      <wsdl:input message="tns:ApplicationToSubmittedSoapIn"/>
+      <wsdl:output message="tns:ApplicationToSubmittedSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePermitFromApplication">
+      <wsdl:input message="tns:CreatePermitFromApplicationSoapIn"/>
+      <wsdl:output message="tns:CreatePermitFromApplicationSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="CloseApplication">
+      <wsdl:input message="tns:CloseApplicationSoapIn"/>
+      <wsdl:output message="tns:CloseApplicationSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteApplication">
+      <wsdl:input message="tns:DeleteApplicationSoapIn"/>
+      <wsdl:output message="tns:DeleteApplicationSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteApplicationByWorkOrderNumber">
+      <wsdl:input message="tns:DeleteApplicationByWorkOrderNumberSoapIn"/>
+      <wsdl:output message="tns:DeleteApplicationByWorkOrderNumberSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllActiveApplications">
+      <wsdl:input message="tns:GetAllActiveApplicationsSoapIn"/>
+      <wsdl:output message="tns:GetAllActiveApplicationsSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRecentUpdatedApplicationsFromDate">
+      <wsdl:input message="tns:GetAllRecentUpdatedApplicationsFromDateSoapIn"/>
+      <wsdl:output message="tns:GetAllRecentUpdatedApplicationsFromDateSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplication">
+      <wsdl:input message="tns:GetApplicationSoapIn"/>
+      <wsdl:output message="tns:GetApplicationSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplicationsByWorkOrderNumbers">
+      <wsdl:input message="tns:GetApplicationsByWorkOrderNumbersSoapIn"/>
+      <wsdl:output message="tns:GetApplicationsByWorkOrderNumbersSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplicationBySurpassRef">
+      <wsdl:input message="tns:GetApplicationBySurpassRefSoapIn"/>
+      <wsdl:output message="tns:GetApplicationBySurpassRefSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplicationBySurpassRefAsJSON">
+      <wsdl:input message="tns:GetApplicationBySurpassRefAsJSONSoapIn"/>
+      <wsdl:output message="tns:GetApplicationBySurpassRefAsJSONSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplicationsByWorkOrderNumber">
+      <wsdl:input message="tns:GetApplicationsByWorkOrderNumberSoapIn"/>
+      <wsdl:output message="tns:GetApplicationsByWorkOrderNumberSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplicationsByState">
+      <wsdl:input message="tns:GetApplicationsByStateSoapIn"/>
+      <wsdl:output message="tns:GetApplicationsByStateSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplicationsByOutage">
+      <wsdl:input message="tns:GetApplicationsByOutageSoapIn"/>
+      <wsdl:output message="tns:GetApplicationsByOutageSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllApplicationTypes">
+      <wsdl:input message="tns:GetAllApplicationTypesSoapIn"/>
+      <wsdl:output message="tns:GetAllApplicationTypesSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="AddWorkCategory">
+      <wsdl:input message="tns:AddWorkCategorySoapIn"/>
+      <wsdl:output message="tns:AddWorkCategorySoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="AddSingleWorkCategoryByID">
+      <wsdl:input message="tns:AddSingleWorkCategoryByIDSoapIn"/>
+      <wsdl:output message="tns:AddSingleWorkCategoryByIDSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="AddSingleWorkCategoryByName">
+      <wsdl:input message="tns:AddSingleWorkCategoryByNameSoapIn"/>
+      <wsdl:output message="tns:AddSingleWorkCategoryByNameSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="AddHazard">
+      <wsdl:input message="tns:AddHazardSoapIn"/>
+      <wsdl:output message="tns:AddHazardSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="AddSingleHazardByID">
+      <wsdl:input message="tns:AddSingleHazardByIDSoapIn"/>
+      <wsdl:output message="tns:AddSingleHazardByIDSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="AddSingleHazardByName">
+      <wsdl:input message="tns:AddSingleHazardByNameSoapIn"/>
+      <wsdl:output message="tns:AddSingleHazardByNameSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="AddControl">
+      <wsdl:input message="tns:AddControlSoapIn"/>
+      <wsdl:output message="tns:AddControlSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="AddSingleControlByID">
+      <wsdl:input message="tns:AddSingleControlByIDSoapIn"/>
+      <wsdl:output message="tns:AddSingleControlByIDSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="AddSingleControlByName">
+      <wsdl:input message="tns:AddSingleControlByNameSoapIn"/>
+      <wsdl:output message="tns:AddSingleControlByNameSoapOut"/>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateApplicationApproval">
+      <wsdl:input message="tns:UpdateApplicationApprovalSoapIn"/>
+      <wsdl:output message="tns:UpdateApplicationApprovalSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="API_ApplicationWebServiceSoap" type="tns:API_ApplicationWebServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="AddApplication">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/AddApplication" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateApplication">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/UpdateApplication" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApplicationToNextDefaultState">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/ApplicationToNextDefaultState" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApplicationToNonDefaultState">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/ApplicationToNonDefaultState" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApplicationToSubmitted">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/ApplicationToSubmitted" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePermitFromApplication">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/CreatePermitFromApplication" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CloseApplication">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/CloseApplication" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteApplication">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/DeleteApplication" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteApplicationByWorkOrderNumber">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/DeleteApplicationByWorkOrderNumber" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllActiveApplications">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/GetAllActiveApplications" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRecentUpdatedApplicationsFromDate">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/GetAllRecentUpdatedApplicationsFromDate" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplication">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/GetApplication" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplicationsByWorkOrderNumbers">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/GetApplicationsByWorkOrderNumbers" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplicationBySurpassRef">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/GetApplicationBySurpassRef" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplicationBySurpassRefAsJSON">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/GetApplicationBySurpassRefAsJSON" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplicationsByWorkOrderNumber">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/GetApplicationsByWorkOrderNumber" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplicationsByState">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/GetApplicationsByState" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplicationsByOutage">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/GetApplicationsByOutage" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllApplicationTypes">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/GetAllApplicationTypes" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddWorkCategory">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/AddWorkCategory" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSingleWorkCategoryByID">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/AddSingleWorkCategoryByID" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSingleWorkCategoryByName">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/AddSingleWorkCategoryByName" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddHazard">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/AddHazard" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSingleHazardByID">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/AddSingleHazardByID" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSingleHazardByName">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/AddSingleHazardByName" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddControl">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/AddControl" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSingleControlByID">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/AddSingleControlByID" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSingleControlByName">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/AddSingleControlByName" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateApplicationApproval">
+      <soap:operation soapAction="http://www.SageTechnology.com.au/UpdateApplicationApproval" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="API_ApplicationWebServiceSoap12" type="tns:API_ApplicationWebServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="AddApplication">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/AddApplication" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateApplication">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/UpdateApplication" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApplicationToNextDefaultState">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/ApplicationToNextDefaultState" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApplicationToNonDefaultState">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/ApplicationToNonDefaultState" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApplicationToSubmitted">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/ApplicationToSubmitted" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePermitFromApplication">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/CreatePermitFromApplication" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CloseApplication">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/CloseApplication" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteApplication">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/DeleteApplication" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteApplicationByWorkOrderNumber">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/DeleteApplicationByWorkOrderNumber" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllActiveApplications">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/GetAllActiveApplications" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllRecentUpdatedApplicationsFromDate">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/GetAllRecentUpdatedApplicationsFromDate" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplication">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/GetApplication" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplicationsByWorkOrderNumbers">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/GetApplicationsByWorkOrderNumbers" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplicationBySurpassRef">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/GetApplicationBySurpassRef" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplicationBySurpassRefAsJSON">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/GetApplicationBySurpassRefAsJSON" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplicationsByWorkOrderNumber">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/GetApplicationsByWorkOrderNumber" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplicationsByState">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/GetApplicationsByState" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetApplicationsByOutage">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/GetApplicationsByOutage" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllApplicationTypes">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/GetAllApplicationTypes" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddWorkCategory">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/AddWorkCategory" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSingleWorkCategoryByID">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/AddSingleWorkCategoryByID" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSingleWorkCategoryByName">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/AddSingleWorkCategoryByName" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddHazard">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/AddHazard" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSingleHazardByID">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/AddSingleHazardByID" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSingleHazardByName">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/AddSingleHazardByName" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddControl">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/AddControl" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSingleControlByID">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/AddSingleControlByID" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSingleControlByName">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/AddSingleControlByName" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateApplicationApproval">
+      <soap12:operation soapAction="http://www.SageTechnology.com.au/UpdateApplicationApproval" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="API_ApplicationWebService">
+    <wsdl:port name="API_ApplicationWebServiceSoap" binding="tns:API_ApplicationWebServiceSoap">
+      <soap:address location="https://epas-rk95-dev.staging.prometheusgroup.app/webservices/Integration/ApplicationWebService.asmx"/>
+    </wsdl:port>
+    <wsdl:port name="API_ApplicationWebServiceSoap12" binding="tns:API_ApplicationWebServiceSoap12">
+      <soap12:address location="https://epas-rk95-dev.staging.prometheusgroup.app/webservices/Integration/ApplicationWebService.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
