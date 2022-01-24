@@ -31,7 +31,6 @@ EPAS_API_AUTH_KEY=###-####-####
 
 ## Usage
 
-When users create a Permit Application in ePAS they are requested to enter a "Task Number" (AKA Work Order Number) in order to associate the application with a task or work order in an external system.  If the user has done so, the permit application or permit can be retrieved as follows:
 
 ### Create a Permit Request
 ```php
@@ -51,6 +50,9 @@ print $application->url();
 
 
 ### Retrieve Permit Applications by Work Order (ATLIS Task ID)
+
+When users create a Permit Application in ePAS they are requested to enter a "Task Number" (AKA Work Order Number) in order to associate the application with a task or work order in an external system.  If the user has done so, the permit application or permit can be retrieved as follows:
+
 ```php
 use \Jlab\EpasRepository\Repository\ApplicationRepository;
 $repo = new ApplicationRepository();
@@ -60,7 +62,7 @@ print $applications->first()->url();
 ```
 
 ### Retrieve Specific Permit Application by its RemoteRef
-
+While multiple permit applications may be associated with the same work order number, each also has a RemoteRef property that uniquely identifies it and can be used to retreive it.
 ```php
 use \Jlab\EpasRepository\Repository\ApplicationRepository;
 $repo = new ApplicationRepository();
@@ -72,6 +74,7 @@ print $applications->first()->url();
 ```
 
 ### Update a Permit Application's Title
+The scalar properties of a permit application that was created via integration can be updated after creation using the update method of the ApplicationRepository.
 
 ```php
 use \Jlab\EpasRepository\Repository\ApplicationRepository;
@@ -85,6 +88,7 @@ print $updated->title;
 ```
 
 ### Delete a Permit Application by its RemoteRef
+A permit application that was created via integration can also be deleted via integration using its unique RemoteRef identifier.
 ```php
 use \Jlab\EpasRepository\Repository\ApplicationRepository;
 $repo = new ApplicationRepository();
@@ -93,8 +97,8 @@ $remoteRef = $applications->first()->remoteRef()  // ex: ATLIS-20201-20220124125
 $repo->delete($remoteRef);  // returns true or throws
 ```
 
-
 ### Retrieve Permits by Work Order (ATLIS Task ID)
+Like Permit applications, Permits can also be retrieved for a given work order number.
 ```php
 use \Jlab\EpasRepository\Repository\PermitRepository;
 $repo = new PermitRepository();
