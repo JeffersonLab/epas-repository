@@ -29,7 +29,7 @@ class ApplicationRepositoryTest extends TestCase{
      *
      * @throws \Jlab\EpasRepository\Exception\ConfigurationException
      */
-    function test_it_creates_a_remote_permit_application(){
+    function test_it_creates_updates_and_deletes_a_remote_permit_application(){
         if (! env('EPAS_API_AUTH_KEY')){
             $this->addWarning('Integration test skipped because no EPAS_API_AUTH_KEY env was set');
             return false;
@@ -60,6 +60,12 @@ class ApplicationRepositoryTest extends TestCase{
         $repo = new ApplicationRepository();
         $application = $repo->save($data);
         $this->assertEquals('The Permit Application Title', $application->title);
+
+        $application->title = 'Updated Title';
+        $repo->update($application);
+
+        $retrieved = $repo->findByRemoteRef($application->remoteRef());
+        $this->assertEquals('Updated Title', $retrieved->title());
 
         $this->assertTrue($repo->delete($application->remoteRef()));
 

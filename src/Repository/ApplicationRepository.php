@@ -113,6 +113,21 @@ class ApplicationRepository extends EpasRepository
     }
 
     /**
+     * Update a Permit Application in ePAS
+     */
+    function update(Application $application){
+
+        $this->assertIsValidToSave($application);
+
+        // Make the API call that should persist the data to ePAS database
+        $retrieved = $this->callUpdateApplication($application);
+
+        // Use the unique remoteRef property that we specified during AddApplication
+        // to turn around and retrieve the newly created Application.
+        return $this->getApplication($application->remoteRef());
+    }
+
+    /**
      * Delete a Permit Application from ePAS
      * @param string $remoteRef
      * @return bool
@@ -131,20 +146,13 @@ class ApplicationRepository extends EpasRepository
 
 
     /**
-     * Special call method that can use locally modified wsdl.
-     *
-     * This is necessary right now because the ePAS wsdl online incorrectly specifies a bunch
-     * of fields as required (minOccurs="1") even though they are not in fact required.
-     * One workaround is to save a local copy of that wsdl where we can change those
-     * unnecessary values to minOccurs="0".
+     * Create a new permit application.
      *
      * @param Application $application
      * @return mixed
      * @throws \Jlab\EpasRepository\Exception\ConfigurationException
      */
     protected function callAddApplication(Application $application){
-        // Must init client to use a local WSDL copy with bogus minOccurs=1 items removed
-        // $this->initApiClient(config('epas-repository.applicationWsdl'));
 
         // Do the API call
         $params['sdoApplication'] = $application->toArray();
@@ -153,6 +161,26 @@ class ApplicationRepository extends EpasRepository
         // Return the results of the API call
         return $retrieved;
     }
+
+    /**
+     * Update an existing permit application.
+     *
+     * Only scalar fields will be udpated.
+     *
+     * @param Application $application
+     * @return mixed
+     * @throws \Jlab\EpasRepository\Exception\ConfigurationException
+     */
+    protected function callUpdateApplication(Application $application){
+        $params['sdoApplication'] = array_filter($application->toArray(), function ($item){
+           return is_scalar($item);
+        });
+        $retrieved = $this->call('UpdateApplication', $params);
+
+        // Return the results of the API call
+        return $retrieved;
+    }
+
 
     /**
      * Get a collection of available Application types

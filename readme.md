@@ -71,6 +71,19 @@ print $applications->first()->title;
 print $applications->first()->url();
 ```
 
+### Update a Permit Application's Title
+
+```php
+use \Jlab\EpasRepository\Repository\ApplicationRepository;
+$repo = new ApplicationRepository();
+$applications = $repo->findByWorkOrder('ATLIS-20201');
+$application = $applications->first()
+print $application->title;
+$application->title = 'New Title'
+$updated = $repo->update($application);
+print $updated->title;
+```
+
 ### Delete a Permit Application by its RemoteRef
 ```php
 use \Jlab\EpasRepository\Repository\ApplicationRepository;
