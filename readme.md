@@ -107,6 +107,58 @@ print $permits->first()->title;
 print $permits->first()->url();
 ```
 
+## Debugging
+
+Setting trace attribute of the repository to true will send debugging information to the application logfile
+including the XML content of the requests sent to the ePAS SOAP server and the XML responses received.
+
+Example Code:
+
+```php
+ $repo = new ApplicationRepository();
+ $repo->trace = true;   // write debug info to log
+ $applications = $repo->findByWorkOrder('ATLIS-107141');
+```
+
+Example Logging:
+
+```xml
+[2022-07-29 08:29:39] production.DEBUG: s:494:
+"<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"
+                   xmlns:ns1="http://www.SageTechnology.com.au/">
+    <SOAP-ENV:Body>
+        <ns1:GetApplicationsByWorkOrderNumber>
+            <ns1:sdoAuthObject>
+                <ns1:AuthKey>#####-####-####-####</ns1:AuthKey>
+                <ns1:UserName>INTEGRATOR</ns1:UserName>
+            </ns1:sdoAuthObject>
+            <ns1:strWorkOrderNumber>ATLIS-107141</ns1:strWorkOrderNumber>
+        </ns1:GetApplicationsByWorkOrderNumber>
+    </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>";
+[2022-07-29 08:29:39] production.DEBUG: s:14605:
+"<?xml version="1.0" encoding="utf-8"?><soap:Envelope
+xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<soap:Body>
+    <GetApplicationsByWorkOrderNumberResponse xmlns="http://www.SageTechnology.com.au/">
+        <GetApplicationsByWorkOrderNumberResult>
+            <ResultCode>2</ResultCode>
+            <ResultText>Integration action completed successfully</ResultText>
+            <SurpassRef>-1</SurpassRef>
+            <RemoteRef/>
+            <ResultData xsi:type="xsd:string">&lt;ArrayOfApplication xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;&lt;Application&gt;&lt;RemoteRef&gt;ATLIS-107141-
+                 20220721094423&lt;/RemoteRef&gt;&lt;SurpassRef&gt;356&lt;/SurpassRef&gt;&lt;CreatedByRemoteRef
+                 ...
+           </ResultData>
+       </GetApplicationsByWorkOrderNumberResult>
+   </GetApplicationsByWorkOrderNumberResponse>
+</soap:Body>
+```
+
+
 
 
 ## Change log
