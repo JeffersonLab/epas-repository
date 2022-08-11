@@ -33,7 +33,17 @@ abstract class BaseModel implements DocumentInterface
      * @return string|null
      */
     function remoteRef(): ?string {
-        return array_key_exists('RemoteRef', $this->data) ? $this->data['RemoteRef'] : null;
+        //Log::debug($this->data);
+        $remoteRef =  array_key_exists('RemoteRef', $this->data) ? $this->data['RemoteRef'] : null;
+        // Something changed week of 8/11 and ePAS started returning multiple values for RemoteRef.
+        // We need to check for array response now.
+        if (is_array($remoteRef)){
+            if (empty($remoteRef)){
+                return null;
+            }
+            return $remoteRef[0];   // What does it even mean to have more than one?
+        }
+        return $remoteRef;
     }
 
     /**
