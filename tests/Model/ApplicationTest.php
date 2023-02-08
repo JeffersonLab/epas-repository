@@ -62,4 +62,10 @@ class ApplicationTest extends TestCase
         $this->assertEquals('Integration Test', $this->application->title());
         $this->assertEquals('11', $this->application->surpassRef());
     }
+
+    function test_it_handles_non_scalar_title(){
+        $this->application->title = [];
+        $this->assertIsArray($this->application->title);
+        $this->assertIsScalar($this->application->title());
+    }
 }

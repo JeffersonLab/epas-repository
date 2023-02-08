@@ -53,7 +53,12 @@ abstract class BaseModel implements DocumentInterface
      */
     function title(): string
     {
-        return $this->title;
+        // For some reason ePAS sends and empty list instead of scalar
+        // when there's no title!
+        if (is_array($this->title)){
+            return empty($this->title) ? '[Untitled]' : (string) $this->title[0];
+        }
+        return (string) $this->title;
     }
 
 
