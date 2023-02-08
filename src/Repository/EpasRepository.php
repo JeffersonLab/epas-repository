@@ -317,19 +317,41 @@ abstract class EpasRepository
         return $collection;
     }
 
+
+    /**
+     * Extract the ResultText payload from the API Response.
+     *
+     * Can return null
+     * @param string $method The API method that generated the response
+     * @param Object $result The API result object
+     * @return mixed|null
+     * @throws WebServiceException
+     */
+    protected function resultText(string $method, $result)
+    {
+        $this->assertApiResponseIsGood($method, $result);
+        if (isset($result->response->{$this->responseName($method)}->ResultText)){
+            return $result->response->{$this->responseName($method)}->ResultText;
+        }
+        return null;
+    }
+
     /**
      * Extract the ResultData payload from the API Response.
      *
+     * Can return null
      * @param string $method The API method that generated the response
      * @param Object $result The API result object
-     * @return mixed
+     * @return mixed|null
      * @throws WebServiceException
      */
     protected function resultData(string $method, $result)
     {
         $this->assertApiResponseIsGood($method, $result);
-        return $result->response->{$this->responseName($method)}->ResultData;
+        if (isset($result->response->{$this->responseName($method)}->ResultData)){
+            return $result->response->{$this->responseName($method)}->ResultData;
+        }
+        return null;
     }
-
 
 }
