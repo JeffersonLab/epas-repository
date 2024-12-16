@@ -12,9 +12,9 @@
     "require": {
         "ext-simplexml": "*",
         "ext-json": "*",
-        "php": "^7.4|~8.0|~8.1|~8.2",
-        "illuminate/support": "^8.16|^9.0|^10.0",
-        "ricorocks-digital-agency/soap": "^1.7",
+        "php": "^7.4|~8.0|~8.1|~8.2|~8.3",
+        "illuminate/support": "^8.16|^9.0|^10.0|^11.0",
+        "ricorocks-digital-agency/soap": "^1.7|^2.0",
         "laravel/sail": "^1.19"
     },
     "require-dev": {
