@@ -31,7 +31,7 @@ class ApplicationRepositoryTest extends TestCase{
      */
     function test_it_creates_updates_and_deletes_a_remote_permit_application(){
         if (! env('EPAS_API_AUTH_KEY')){
-            $this->addWarning('Integration test skipped because no EPAS_API_AUTH_KEY env was set');
+            trigger_error('Integration test skipped because no EPAS_API_AUTH_KEY env was set',E_USER_WARNING);
             return false;
         }
         $this->assertNotNull(env('EPAS_API_AUTH_KEY'),'EPAS_API_AUTH_KEY not found in environment variable');
