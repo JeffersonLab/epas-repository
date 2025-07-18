@@ -63,7 +63,7 @@ abstract class BaseModel implements DocumentInterface
      */
     function title(): string
     {
-        return $this->title;
+        return is_string($this->title) ? $this->title : '';
     }
 
 
