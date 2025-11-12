@@ -2,6 +2,8 @@
 
 namespace Jlab\EpasRepository\Model;
 
+use Carbon\Carbon;
+
 /**
  * Class Application
  *
@@ -36,6 +38,10 @@ class Permit extends BaseModel
     function stateName(): string
     {
         return $this->permitStateName;
+    }
+
+    function expirationDate(): string {
+        return $this->ExpectedSurrenderDateTime;
     }
 
 

@@ -23,6 +23,7 @@ class PermitTest extends TestCase
             "DirectionalityName" => [],
             "DisplayName" => "JLab-PTW-11",
             "PermitNumber" => "JLab-PTW-11",
+            "ExpectedSurrenderDateTime" => "2025-11-28T13:47:00",
             "PermitStateName" => "PlanningComplete",
             "PermitStateID" => "-2147483648",
             "PermitTypeID" => "3",
@@ -63,6 +64,7 @@ class PermitTest extends TestCase
         $this->assertEquals('PlanningComplete', $this->permit->stateName());
         $this->assertEquals('Integration Test', $this->permit->title());
         $this->assertEquals('11', $this->permit->surpassRef());
+        $this->assertEquals("2025-11-28T13:47:00", $this->permit->expirationDate());
     }
 
 }
