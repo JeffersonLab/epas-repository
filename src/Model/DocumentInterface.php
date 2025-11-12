@@ -64,4 +64,10 @@ interface DocumentInterface
      * @return string
      */
     function title() : string;
+
+    /**
+     * Get the expiration date of the permit (if applicable)
+     */
+    function expirationDate() : ?string;
+
 }

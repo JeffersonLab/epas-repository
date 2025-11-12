@@ -61,5 +61,6 @@ class ApplicationTest extends TestCase
         $this->assertEquals('PermitCreated', $this->application->stateName());
         $this->assertEquals('Integration Test', $this->application->title());
         $this->assertEquals('11', $this->application->surpassRef());
+        $this->assertNull($this->application->expirationDate());
     }
 }

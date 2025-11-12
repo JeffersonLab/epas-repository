@@ -112,4 +112,8 @@ class Application extends BaseModel
         return $this->applicationStateName;
     }
 
+  function expirationDate(): ?string {
+    return null;
+  }
+
 }
