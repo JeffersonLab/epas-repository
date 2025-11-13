@@ -45,6 +45,35 @@ class PermitRepository extends EpasRepository
         }
     }
 
+  /**
+   * Retrieve ePAS permits related to the specified state name.
+   *
+   * The ePAS WorkOrderNumber field is a string field that contains a reference to
+   * a record in some external work order generation system.  At Jlab, these WorkOrderNumbers
+   * will be in the format {system}{id}.
+   *
+   * ex:  ATLIS-20201  or MAXIMO-1001
+   *
+   * @param $orderNumber
+   * @return \Illuminate\Support\Collection
+   * @throws \Jlab\EpasRepository\Exception\ConfigurationException
+   */
+  function findByStateName($stateName){
+    $params['strStateName'] = $stateName;
+    try{
+      $retrieved = $this->call('GetPermitsByStateName', $params);
+      return $this->collect($this->ParseMultipleResultsData($retrieved));
+    }catch(\Exception $e){
+      // Unfortunately, we need to parse the exception text to see if
+      // it's simply a matter of no records located and we can just
+      // return an empty result set.
+      if (stristr($e->getMessage(),'No permit record located')){
+        return new Collection();  // empty result set
+      }
+      // re-throw any other exceptions
+      throw $e;
+    }
+  }
 
     /**
      * @inheritDoc
