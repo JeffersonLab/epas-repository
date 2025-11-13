@@ -48,20 +48,19 @@ class PermitRepository extends EpasRepository
   /**
    * Retrieve ePAS permits related to the specified state name.
    *
-   * The ePAS WorkOrderNumber field is a string field that contains a reference to
-   * a record in some external work order generation system.  At Jlab, these WorkOrderNumbers
-   * will be in the format {system}{id}.
+   * The ePAS StateName field is a string field that indicates the approval
+   * or execution status of the permit.
    *
-   * ex:  ATLIS-20201  or MAXIMO-1001
+   * ex:  OnIssue  or PermitIssued
    *
-   * @param $orderNumber
+   * @param $stateName
    * @return \Illuminate\Support\Collection
    * @throws \Jlab\EpasRepository\Exception\ConfigurationException
    */
-  function findByStateName($stateName){
+  function findByState($stateName){
     $params['strStateName'] = $stateName;
     try{
-      $retrieved = $this->call('GetPermitsByStateName', $params);
+      $retrieved = $this->call('GetPermitsByState', $params);
       return $this->collect($this->ParseMultipleResultsData($retrieved));
     }catch(\Exception $e){
       // Unfortunately, we need to parse the exception text to see if
