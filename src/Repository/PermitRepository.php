@@ -58,7 +58,7 @@ class PermitRepository extends EpasRepository
    * @throws \Jlab\EpasRepository\Exception\ConfigurationException
    */
   function findByState($stateName){
-    $params['strStateName'] = $stateName;
+    $params['strPermitStateName'] = $stateName;
     try{
       $retrieved = $this->call('GetPermitsByState', $params);
       return $this->collect($this->ParseMultipleResultsData($retrieved));
